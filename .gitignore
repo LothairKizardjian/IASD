@@ -8,6 +8,7 @@ __pycache__/
 
 .h5
 .json
+history
 
 # Distribution / packaging
 .Python
