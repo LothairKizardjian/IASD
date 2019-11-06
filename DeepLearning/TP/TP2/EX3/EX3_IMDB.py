@@ -48,9 +48,9 @@ def save(model):
 
 def create_model():
     model = Sequential()
-    model.add(Dense(32,activation='relu',input_shape=(10000,)))
-    model.add(Dense(16,activation='relu'))
-    model.add(Dense(8 ,activation='relu'))
+    model.add(Dense(32,activation='relu',kernel_regularizer=keras.regularizers.l2(0.0001),input_shape=(10000,)))
+    model.add(Dense(16,kernel_regularizer=keras.regularizers.l2(0.0001),activation='relu'))
+    model.add(Dense(8 ,kernel_regularizer=keras.regularizers.l2(0.0001),activation='relu'))
     model.add(Dense(1))
     model.add(Activation('sigmoid'))
 
