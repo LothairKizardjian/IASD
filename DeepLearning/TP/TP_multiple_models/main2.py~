@@ -1,0 +1,37 @@
+import tensorflow.keras as keras
+from tensorflow.keras import layers
+import numpy as np
+
+input = [keras.Input(shape=(19,19)) for i in range(6)]
+x = layers.concatenate(input)
+x = layers.Conv2D(32,3,activation='relu')(x)
+x = layers.MaxPooling2D(3)
+x = layers.Conv2D(64,3,activation='relu')(x)
+x = layers.Flatten()
+
+value = layers.Dense(1,activation='sigmoid',name='value')(x)
+policy= layers.Dense(362,activation='softmax',name='policy')(x)
+
+model = keras.Model(inputs=input,outputs=[value,policy])
+model.compile(optimizer=keras.optimizers.RMSprop(1e-3),
+              loss={'value':'mse','department':'categorical_crossentropy'},
+              loss_weights=[1.,0.2])
+
+num_tensors= 1000
+
+input_data = np.zeros(num_tensors,6,19,19)
+print(input_data.shape)
+
+for k in range(num_tensors):
+    for l in range(6):
+        for i in range 19:
+            for j in range 19:
+                rd = np.random.random()
+                if rd < 0.3:
+                      input_data[k,l,i,j] = -1
+                elif 0.3 <= rd < 0.6:
+                      input_data[k,l,i,j] = 1
+
+policy_targets = np.random.random(size=(362,num_tensors))
+
+                
