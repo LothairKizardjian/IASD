@@ -1,0 +1,30 @@
+#ifndef INCLUDES
+#define INCLUDES
+
+#include "Move.h"
+#include "Board.h"
+
+#endif
+
+#ifndef ZOBRIST
+#define ZOBRIST
+
+#include "Zobrist.h"
+
+#endif
+
+#include <math.h>
+#include <map>
+
+class Mcts{
+ private:
+  Board board;
+
+ public:
+  Zobrist zobrist;
+  Mcts();
+  Mcts(Board);
+  int playout(Board board); // returns the result of the playout from board b
+  Move flat_mcts(Board board, int p); // develops a MCTS from the board b, returns the 'best' move to play
+  Move ucb(Board board, int p, float c); // same as flat_mcts 
+};

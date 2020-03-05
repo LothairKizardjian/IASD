@@ -1,0 +1,30 @@
+#ifndef INCLUDES
+#define INCLUDES
+
+#include "../Move.h"
+#include "../Board.h"
+
+#endif
+
+#ifndef ZOBRIST
+#define ZOBRIST
+
+#include "../Zobrist.h"
+
+#endif
+
+#include <math.h>
+#include <map>
+
+class Mcts_uct{
+ private:
+  Board board;
+  std::map<uint64_t,std::tuple
+
+ public:
+  Zobrist zobrist;
+  Mcts_uct();
+  Mcts_uct(Board,Zobrist);
+  int playout(Board board); // returns the result of the playout from board b
+  
+};

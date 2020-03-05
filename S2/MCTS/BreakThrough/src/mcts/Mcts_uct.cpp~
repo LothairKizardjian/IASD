@@ -1,0 +1,22 @@
+#include "../../includes/mcts/Mcts_uct.h"
+
+Mcts_uct::Mcts_uct(){
+}
+
+Mcts_uct::Mcts_uct(Board b, Zobrist z){
+  this->board = b;
+  this->zobrist = z;
+}
+
+int Mcts_uct::playout(Board board){
+  std::random_device rd;
+  std::mt19937 g(rd());
+
+  Board board_copy(board.get_board(),board.get_player());
+  
+  while(board_copy.game_state() == 0){
+    std::vector<Move> move_list = board_copy.legal_moves(); 
+    board_copy.play(move_list[int(rand() % move_list.size())],this->zobrist);
+  }
+  return board_copy.game_state();
+}
