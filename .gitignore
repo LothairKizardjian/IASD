@@ -3,9 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+*~
+
 # BIG CSV FILES
 *.csv
 
+*.ply
 *.webarchive
 
 # C extensions
